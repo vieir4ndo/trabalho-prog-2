@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import java.util.*;
 
@@ -7,26 +6,37 @@ public class trf1 {
     public static void main(String args[]){
 
         Valores list = new Valores();
-
+  
         Scanner in = new Scanner( System.in );
 
-        System.out.println("Insert a value per line");
+        int op =1, soma =0;
 
-        for (int i =0; i< 20; i++){
-            list.Add(in.nextInt());
+        while(op != 2){
+            System.out.println("Insira um valor: ");
+            int numero = in.nextInt();
+            list.Add(numero);
+            soma += numero;
+
+            System.out.println("Deseja continua? 1 - sim, 2 - não \n");
+            op = in.nextInt();
         }
   
         int minList = Collections.min(list.getList());
   
         int maxList = Collections.max(list.getList());
+
+        double media = soma/ list.Size();
   
-        System.out.println("Minimum value of list is: " + minList);
+        System.out.println("O mínimo: " + minList);
   
-        System.out.println("Maximum value of list is: " + maxList);
+        System.out.println("O máximo: " + maxList);
+
+        System.out.println("A média: " + media);
     }
-    
+
+  
 } 
- public class Valores {
+  public class Valores {
         List<Integer> list;
 
         public Valores(){
@@ -39,5 +49,9 @@ public class trf1 {
 
         public List<Integer> getList(){
             return this.list;
+        }
+
+        public int Size() {
+            return this.list.size();
         }
     }
