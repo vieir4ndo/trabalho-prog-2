@@ -9,7 +9,8 @@ public class trf1 {
   
         Scanner in = new Scanner( System.in );
 
-        int op =1, soma =0;
+        int op =1;
+        float soma =0;
 
         while(op != 2){
             System.out.println("Insira um valor: ");
@@ -25,7 +26,9 @@ public class trf1 {
   
         int maxList = Collections.max(list.getList());
 
-        double media = soma/ list.Size();
+        Integer tam = list.Size();
+
+        float media = soma/ tam.floatValue();
   
         System.out.println("O mínimo: " + minList);
   
