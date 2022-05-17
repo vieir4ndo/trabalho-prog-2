@@ -3,69 +3,80 @@ import java.util.*;
 
 public class trf1 {
 
-    public static void main(String args[]){
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
 
-        Valores list = new Valores();
-  
-        Scanner in = new Scanner( System.in );
+    System.out.println("informe o tam da lista");
+    int tam = in.nextInt();
 
-        int op =1;
-        int primos = 0;
-        int multiplosDe2 = 0;
-        int muliplosDe3e5 =0;
+    Valores list = new Valores(tam);
+    int soma =0;
 
-        while(op != 2){
-            System.out.println("Insira um valor: ");
-            int numero = in.nextInt();
-            list.Add(numero);
+    int primos = 0;
 
-            if (numero % 2 == 0){
-                multiplosDe2++;
-            }
-            
-            if (numero % 3 ==0 && numero  % 5 ==0){
-                muliplosDe3e5++;
-            }
-            
-            if (ehPrimo(numero)){
-                primos++;
-            }
+    for (int i = 0; i < tam; i++){
+        System.out.println("Insira um valor: ");
+        float numero = in.nextFloat();
+        soma += numero;
+        list.Add(numero);
 
-            System.out.println("Deseja continua? 1 - sim, 2 - não \n");
-            op = in.nextInt();
+        if (ehPrimo(numero)) {
+            primos++;
         }
-  
-        System.out.println("Primos: " + primos);
-        System.out.println("Dívisivel de 2: " + multiplosDe2);
-        System.out.println("Dívisivel por 3 e 5: " + muliplosDe3e5);
     }
 
-    private static boolean ehPrimo(int numero) {
-        if (numero == 1) return false;
+    float minList = Collections.min(list.getList());
+
+    float maxList = Collections.max(list.getList());
+
+    float media = soma / tam;
+
+    System.out.println("O mínimo: " + minList);
+
+    System.out.println("O máximo: " + maxList);
+
+    System.out.println("A média: " + media);
+
+    System.out.println("Primos: " + primos);
+
+    list.PrintAll();
+  }
+
+  private static boolean ehPrimo(float numero) {
+    if (numero == 1) return false;
     for (int j = 2; j < numero; j++) {
-        if (numero % j == 0){
-            return false;
-        }
+      if (numero % j == 0) {
+        return false;
+      }
     }
     return true;
+  }
+
 }
-} 
-  public class Valores {
-        List<Integer> list;
+public class Valores {
+  List<Float> list;
+  int tam;
 
-        public Valores(){
-            list = new ArrayList<Integer>();
-        }
+  public Valores(int tam) {
+    this.tam = tam;
+    list = new ArrayList<Float>(tam);
+  }
 
-        public void Add(int numero){
-            list.add(numero);
-        }
+  public void Add(float numero) {
+    list.add(numero);
+  }
 
-        public List<Integer> getList(){
-            return this.list;
-        }
+  public List<Float> getList() {
+    return this.list;
+  }
 
-        public int Size() {
-            return this.list.size();
-        }
+  public int Size() {
+    return this.list.size();
+  }
+
+  public void PrintAll() {
+    for (int i = 0; i < tam; i++) {
+        System.out.printf(this.list.indexOf(i));
     }
+  }
+}
